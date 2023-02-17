@@ -2,12 +2,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const Context = createContext();
 
+// eslint-disable-next-line
+
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
 export const Provider = ({ children }) => {
   const [cocktails, setCocktails] = useState([]);
   const [drinkDetails, setDrinkDetails] = useState({});
   const [loading, setLoading] = useState(true);
+  const [searchedTerm, setSearchedTerm] = useState("");
 
   const getDrinkDetails = (id) => {
     const foundDrink = cocktails.find((drink) => drink.idDrink === id);
@@ -15,8 +18,9 @@ export const Provider = ({ children }) => {
   };
 
   async function fetchCocktails() {
+    setLoading(true);
     try {
-      const response = await fetch(`${url}`);
+      const response = await fetch(`${url}${searchedTerm}`);
       const { drinks } = await response.json();
       if (drinks) {
         setCocktails(drinks);
@@ -32,9 +36,16 @@ export const Provider = ({ children }) => {
 
   useEffect(() => {
     fetchCocktails();
-  }, []);
+  }, [searchedTerm]);
 
-  const value = { cocktails, getDrinkDetails, drinkDetails, loading };
+  const value = {
+    cocktails,
+    getDrinkDetails,
+    drinkDetails,
+    loading,
+    searchedTerm,
+    setSearchedTerm,
+  };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
