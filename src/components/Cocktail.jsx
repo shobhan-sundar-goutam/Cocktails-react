@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
 const Cocktail = () => {
-  const { cocktails, getDrinkDetails } = useGlobalContext();
+  const { cocktails } = useGlobalContext();
 
   return (
     <>
@@ -20,8 +20,7 @@ const Cocktail = () => {
               <p>{strCategory}</p>
               <NavLink
                 className="btn btn-primary btn-details"
-                to={"/cocktail"}
-                onClick={() => getDrinkDetails(idDrink)}
+                to={`/cocktail/${idDrink}`}
               >
                 details
               </NavLink>

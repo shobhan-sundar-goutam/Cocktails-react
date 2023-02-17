@@ -6,14 +6,8 @@ const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
 export const Provider = ({ children }) => {
   const [cocktails, setCocktails] = useState([]);
-  const [drinkDetails, setDrinkDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [searchedTerm, setSearchedTerm] = useState("");
-
-  const getDrinkDetails = (id) => {
-    const foundDrink = cocktails.find((drink) => drink.idDrink === id);
-    setDrinkDetails(foundDrink);
-  };
 
   async function fetchCocktails() {
     setLoading(true);
@@ -38,9 +32,8 @@ export const Provider = ({ children }) => {
 
   const value = {
     cocktails,
-    getDrinkDetails,
-    drinkDetails,
     loading,
+    setLoading,
     searchedTerm,
     setSearchedTerm,
   };
