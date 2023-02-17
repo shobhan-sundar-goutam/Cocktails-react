@@ -20,7 +20,7 @@ const Cocktail = () => {
               <p>{strCategory}</p>
               <NavLink
                 className="btn btn-primary btn-details"
-                to={"/singlecocktail"}
+                to={"/cocktail"}
                 onClick={() => getDrinkDetails(idDrink)}
               >
                 details
