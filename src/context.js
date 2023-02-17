@@ -34,7 +34,6 @@ export const Provider = ({ children }) => {
 
   useEffect(() => {
     fetchCocktails();
-    // eslint-disable-next-line
   }, [searchedTerm]);
 
   const value = {

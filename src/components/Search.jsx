@@ -5,13 +5,17 @@ const Search = () => {
   const { searchedTerm, setSearchedTerm } = useGlobalContext();
   const searchBox = useRef("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   useEffect(() => {
     searchBox.current.focus();
   }, []);
 
   return (
     <section className="section search">
-      <form className="search-form">
+      <form className="search-form" onSubmit={handleSubmit}>
         <div className="form-control">
           <label htmlFor="name">search your favorite cocktail</label>
           <input
