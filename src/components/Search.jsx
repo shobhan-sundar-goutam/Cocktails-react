@@ -1,7 +1,13 @@
+import { useEffect, useRef } from "react";
 import { useGlobalContext } from "../context";
 
 const Search = () => {
   const { searchedTerm, setSearchedTerm } = useGlobalContext();
+  const searchBox = useRef("");
+
+  useEffect(() => {
+    searchBox.current.focus();
+  }, []);
 
   return (
     <section className="section search">
@@ -14,6 +20,7 @@ const Search = () => {
             id="name"
             value={searchedTerm}
             onChange={(e) => setSearchedTerm(e.target.value)}
+            ref={searchBox}
           />
         </div>
       </form>
