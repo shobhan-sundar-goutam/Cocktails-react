@@ -2,8 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const Context = createContext();
 
-// eslint-disable-next-line
-
 const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
 
 export const Provider = ({ children }) => {
@@ -36,6 +34,7 @@ export const Provider = ({ children }) => {
 
   useEffect(() => {
     fetchCocktails();
+    // eslint-disable-next-line
   }, [searchedTerm]);
 
   const value = {
