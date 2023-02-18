@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
-import { useGlobalContext } from "../context";
 
 const SingleCocktail = () => {
-  const { loading, setLoading } = useGlobalContext();
   const { id } = useParams();
+  const [loading, setLoading] = useState(true);
   const [drinkDetails, setDrinkDetails] = useState({});
 
-  const fetchDrink = async () => {
+  const fetchDrink = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -21,7 +20,7 @@ const SingleCocktail = () => {
       console.log(error);
       setLoading(false);
     }
-  };
+  }, [id]);
 
   const {
     idDrink,
@@ -48,7 +47,7 @@ const SingleCocktail = () => {
 
   useEffect(() => {
     fetchDrink();
-  }, [id]);
+  }, [id, fetchDrink]);
 
   if (loading) {
     return <Loading />;

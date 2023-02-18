@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const Context = createContext();
 
@@ -9,7 +15,7 @@ export const Provider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [searchedTerm, setSearchedTerm] = useState("");
 
-  async function fetchCocktails() {
+  const fetchCocktails = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`${url}${searchedTerm}`);
@@ -24,11 +30,11 @@ export const Provider = ({ children }) => {
       console.log(error);
       setLoading(false);
     }
-  }
+  }, [searchedTerm]);
 
   useEffect(() => {
     fetchCocktails();
-  }, [searchedTerm]);
+  }, [searchedTerm, fetchCocktails]);
 
   const value = {
     cocktails,
