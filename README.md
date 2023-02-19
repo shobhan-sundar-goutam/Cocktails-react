@@ -18,6 +18,9 @@ Live Link:- [Cocktails](https://cocktails-react-ssg.netlify.app/)
 
 ### Demo
 
+
+https://user-images.githubusercontent.com/81035407/219952090-fc4a2957-3dda-4464-9552-ed059ff54e62.mp4
+
 ### Socials
 
 [![image](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shobhan-sundar-goutam/)
